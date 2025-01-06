@@ -30,7 +30,6 @@ fun Application.configureCallLogging() {
     }
 }
 
-
 fun Application.configureSerialization() {
     install(ContentNegotiation) {
         json()
