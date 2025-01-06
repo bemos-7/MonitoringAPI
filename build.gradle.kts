@@ -22,6 +22,7 @@
         testImplementation("io.ktor:ktor-server-tests:$ktorVersion")
         testImplementation("org.jetbrains.kotlin:kotlin-test:1.9.10")
         implementation("io.ktor:ktor-server-call-logging:$ktorVersion")
+        implementation("com.github.oshi:oshi-core:6.6.5")
 
         implementation("ch.qos.logback:logback-classic:1.5.15")
     }
