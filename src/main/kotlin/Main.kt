@@ -10,6 +10,9 @@ import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
 import org.slf4j.event.Level
 import oshi.SystemInfo
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import kotlin.math.round
 
 fun main() {
     embeddedServer(
@@ -42,16 +45,18 @@ fun Application.configureRouting() {
             call.respondText("Welcome to the MonitoringService")
         }
         get("/api/temperature") {
+            val cpuTemp = getCPUTemperature()
             val gpuTemp = getNvidiaGpuTemperature()
             val data = TemperatureReading(
-                temperature = gpuTemp
+                cpu = cpuTemp,
+                gpu = gpuTemp
             )
             call.respond(data)
         }
     }
 }
 
-fun getNvidiaGpuTemperature(): Double {
+private fun getNvidiaGpuTemperature(): Double {
     return try {
         val process = Runtime.getRuntime().exec("nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader")
         val output = process.inputStream.bufferedReader().readText().trim()
@@ -61,7 +66,14 @@ fun getNvidiaGpuTemperature(): Double {
     }
 }
 
+private fun getCPUTemperature(): Double {
+    val systemInfo = SystemInfo()
+    val sensors = systemInfo.hardware.sensors
+    return round(sensors.cpuTemperature)
+}
+
 @Serializable
 data class TemperatureReading(
-    val temperature: Double,
+    val cpu: Double,
+    val gpu: Double
 )
