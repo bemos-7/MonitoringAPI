@@ -9,7 +9,7 @@ class GetTemperatureUseCase(
     fun execute(): Temperature {
         return Temperature(
             cpu = temperatureRepository.getCPUTemperature(),
-            gpu = temperatureRepository.getCPUTemperature()
+            gpu = temperatureRepository.getGPUTemperatureNvidia()
         )
     }
 }
