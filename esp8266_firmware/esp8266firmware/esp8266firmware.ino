@@ -11,9 +11,9 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 WiFiClient client;
 HTTPClient http;
 
-const char* ssid = "marvel";
-const char* password = "saltkeep377";
-const char* serverName = "http://192.168.0.144:8080";
+const char* ssid = "your-wifi-name";
+const char* password = "your-wifi-password";
+const char* serverName = "http://server-name:8080"; //example - 192.168.0.100
 const char* handler = "/api/temperature";
 
 void setup() {
