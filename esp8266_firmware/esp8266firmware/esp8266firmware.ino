@@ -13,7 +13,7 @@ HTTPClient http;
 
 const char* ssid = "your-wifi-name";
 const char* password = "your-wifi-password";
-const char* serverName = "http://server-name:8080"; //example - 192.168.0.100
+const char* serverName = "http://server-name:8080"; // example - 192.168.0.100
 const char* handler = "/api/temperature";
 
 void setup() {
