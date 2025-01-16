@@ -1,11 +1,12 @@
 package infrastructure.database.table
 
+import infrastructure.database.table.DisplayUi.autoIncrement
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.Table
 
-object DisplayUi : Table() {
+object SelectedDisplayUi : Table() {
     val id: Column<Int> = integer("id").autoIncrement()
-    val uiDescription: Column<String> = varchar("ui_description", 255)
+    val uiNumber: Column<Int> = integer("ui_number")
 
     override val primaryKey = PrimaryKey(id)
 }
